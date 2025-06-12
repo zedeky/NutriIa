@@ -6,12 +6,23 @@
       "@/*": [
         "./*"
       ]
-    }
+    },
+    "types": [
+      "expo"
+    ]
   },
   "include": [
+    "app",
+    "expo-env.d.ts",
+    "types",
+    "index.ts",
     "**/*.ts",
     "**/*.tsx",
-    ".expo/types/**/*.ts",
-    "expo-env.d.ts"
+    ".expo/types/**/*.ts"
+  ],
+  "exclude": [
+    "node_modules",
+    "babel.config.js",
+    "metro.config.js"
   ]
 }

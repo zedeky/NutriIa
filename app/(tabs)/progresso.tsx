@@ -1,9 +1,3 @@
-import { Text, View } from 'react-native';
+import ProgressoScreen from '../screens/ProgressoScreen/ProgressoScreen';
 
-export default function ProgressoScreen() {
-  return (
-    <View style={{ flex: 1, justifyContent: 'center', alignItems: 'center' }}>
-      <Text style={{ fontSize: 18 }}>Tela de Progresso 📊</Text>
-    </View>
-  );
-}
+export default ProgressoScreen;

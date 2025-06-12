@@ -1,50 +1,96 @@
-# Welcome to your Expo app 👋
+# 🥗 ianutri+ — App de Saúde e Nutrição
 
-This is an [Expo](https://expo.dev) project created with [`create-expo-app`](https://www.npmjs.com/package/create-expo-app).
+Bem-vindo ao **ianutri+**, um aplicativo focado em auxiliar usuários com sua rotina alimentar, metas de saúde e monitoramento de hábitos!  
+Desenvolvido com **React Native** + **Expo Router**, com design moderno e navegação intuitiva.  
 
-## Get started
+---
 
-1. Install dependencies
+## 🚀 Funcionalidades
 
+- 👋 Tela de boas-vindas personalizada  
+- 🔐 Login e Cadastro de usuários  
+- 🏠 Tela principal com estatísticas de:
+  - Refeições
+  - Calorias
+  - Ingestão de água
+- 📊 Tela de progresso diária/semanal com:
+  - Gordura
+  - Proteína
+  - Carboidrato
+- 🏆 Recompensas visuais  
+- 🕘 Tela de histórico  
+- 📱 Suporte total para Android e iOS
+
+---
+
+## 📸 Screenshots
+
+| Boas-Vindas | Login | Cadastro |
+|------------|-------|----------|
+| ![](./assets/screens/welcome.png) | ![](./assets/screens/login.png) | ![](./assets/screens/register.png) |
+
+| Principal | Progresso | Histórico |
+|----------|-----------|-----------|
+| ![](./assets/screens/home.png) | ![](./assets/screens/progress.png) | ![](./assets/screens/history.png) |
+
+> 💡 Imagens ilustrativas, personalize conforme seu layout final.
+
+---
+
+## 🛠️ Tecnologias Utilizadas
+
+- [⚛️ React Native](https://reactnative.dev/)
+- [🚀 Expo](https://expo.dev/)
+- [🧭 Expo Router](https://expo.github.io/router/)
+- [📦 TypeScript](https://www.typescriptlang.org/)
+- [🎨 Estilização com `StyleSheet` do React Native]
+- [📱 Icons: @expo/vector-icons (Ionicons)]
+
+---
+
+## 📁 Estrutura de Pastas
+NutriIaReact/
+├── app/
+│ ├── index.tsx
+│ ├── (tabs)/ # Navegação por abas
+│ └── screens/
+│ ├── WelcomeScreen/
+│ ├── LoginScreens/
+│ └── RegisterScreen/
+├── assets/
+│ ├── images/
+│ └── fonts/
+├── .expo/ # Dados do expo
+├── package.json
+├── tsconfig.json
+└── README.md
+
+
+---
+
+## 🧪 Como Rodar Localmente
+
+1. Clone o repositório
    ```bash
-   npm install
-   ```
+   git clone https://github.com/seu-usuario/NutriIaReact.git
+   cd NutriIaReact
 
-2. Start the app
+    Instale as dependências
 
-   ```bash
-   npx expo start
-   ```
+npm install
 
-In the output, you'll find options to open the app in a
+Inicie com Expo
 
-- [development build](https://docs.expo.dev/develop/development-builds/introduction/)
-- [Android emulator](https://docs.expo.dev/workflow/android-studio-emulator/)
-- [iOS simulator](https://docs.expo.dev/workflow/ios-simulator/)
-- [Expo Go](https://expo.dev/go), a limited sandbox for trying out app development with Expo
+    npx expo start
 
-You can start developing by editing the files inside the **app** directory. This project uses [file-based routing](https://docs.expo.dev/router/introduction).
+    Abra o app com o Expo Go no celular via QR Code.
 
-## Get a fresh project
+    ⚠️ Caso esteja usando Node 18+, utilize a nova CLI com:
 
-When you're ready, run:
+    npx expo start --dev-client
 
-```bash
-npm run reset-project
-```
+💡 Contribuindo
 
-This command will move the starter code to the **app-example** directory and create a blank **app** directory where you can start developing.
+Pull requests são super bem-vindos! Sinta-se à vontade para abrir issues, enviar melhorias e sugestões.
 
-## Learn more
-
-To learn more about developing your project with Expo, look at the following resources:
-
-- [Expo documentation](https://docs.expo.dev/): Learn fundamentals, or go into advanced topics with our [guides](https://docs.expo.dev/guides).
-- [Learn Expo tutorial](https://docs.expo.dev/tutorial/introduction/): Follow a step-by-step tutorial where you'll create a project that runs on Android, iOS, and the web.
-
-## Join the community
-
-Join our community of developers creating universal apps.
-
-- [Expo on GitHub](https://github.com/expo/expo): View our open source platform and contribute.
-- [Discord community](https://chat.expo.dev): Chat with Expo users and ask questions.
+Feito com 💚  e com apoio da inteligência artificial 🤖
