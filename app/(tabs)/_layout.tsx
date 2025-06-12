@@ -1,43 +1,41 @@
+// app/(tabs)/_layout.tsx
+import { Ionicons } from '@expo/vector-icons';
 import { Tabs } from 'expo-router';
-import React from 'react';
-import { Platform } from 'react-native';
-
-import { HapticTab } from '@/components/HapticTab';
-import { IconSymbol } from '@/components/ui/IconSymbol';
-import TabBarBackground from '@/components/ui/TabBarBackground';
-import { Colors } from '@/constants/Colors';
-import { useColorScheme } from '@/hooks/useColorScheme';
 
 export default function TabLayout() {
-  const colorScheme = useColorScheme();
-
   return (
-    <Tabs
-      screenOptions={{
-        tabBarActiveTintColor: Colors[colorScheme ?? 'light'].tint,
-        headerShown: false,
-        tabBarButton: HapticTab,
-        tabBarBackground: TabBarBackground,
-        tabBarStyle: Platform.select({
-          ios: {
-            // Use a transparent background on iOS to show the blur effect
-            position: 'absolute',
-          },
-          default: {},
-        }),
-      }}>
+    <Tabs screenOptions={{
+      tabBarActiveTintColor: '#5A4FCF',
+      tabBarInactiveTintColor: '#333',
+      tabBarLabelStyle: { fontSize: 12 },
+      tabBarStyle: {
+        backgroundColor: '#f8f4ff',
+        borderTopLeftRadius: 20,
+        borderTopRightRadius: 20,
+        height: 65,
+        paddingBottom: 10,
+        paddingTop: 5,
+      },
+    }}>
       <Tabs.Screen
         name="index"
         options={{
-          title: 'Home',
-          tabBarIcon: ({ color }) => <IconSymbol size={28} name="house.fill" color={color} />,
+          title: 'Principal',
+          tabBarIcon: ({ color, size }) => <Ionicons name="home" color={color} size={size} />,
         }}
       />
       <Tabs.Screen
-        name="explore"
+        name="progress"
         options={{
-          title: 'Explore',
-          tabBarIcon: ({ color }) => <IconSymbol size={28} name="paperplane.fill" color={color} />,
+          title: 'Progresso',
+          tabBarIcon: ({ color, size }) => <Ionicons name="stats-chart" color={color} size={size} />,
+        }}
+      />
+      <Tabs.Screen
+        name="history"
+        options={{
+          title: 'Histórico',
+          tabBarIcon: ({ color, size }) => <Ionicons name="time" color={color} size={size} />,
         }}
       />
     </Tabs>
