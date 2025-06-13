@@ -1,16 +1,22 @@
 import { Ionicons } from '@expo/vector-icons';
-import { Text, View } from 'react-native';
+import { useRouter } from 'expo-router';
+import { Text, TouchableOpacity, View } from 'react-native';
 
 export default function HomeScreen() {
+  const router = useRouter();
+
   return (
     <View style={{ flex: 1, padding: 24, backgroundColor: '#fff' }}>
       <Text style={{ fontSize: 24, fontWeight: 'bold', marginBottom: 16 }}>Bom dia!</Text>
       <Text style={{ fontSize: 16, marginBottom: 24 }}>Como podemos ajudar?</Text>
 
-      <View style={{ marginBottom: 8, backgroundColor: '#C7E0F4', padding: 12, borderRadius: 8 }}>
+      <TouchableOpacity
+        style={{ marginBottom: 8, backgroundColor: '#C7E0F4', padding: 12, borderRadius: 8 }}
+        onPress={() => router.push('/registrarR')}
+      >
         <Ionicons name="add-circle-outline" size={18} color="#555" />
         <Text>Registrar refeição</Text>
-      </View>
+      </TouchableOpacity>
 
       <View style={{ marginBottom: 24, backgroundColor: '#C7E0F4', padding: 12, borderRadius: 8 }}>
         <Ionicons name="list-outline" size={18} color="#555" />
