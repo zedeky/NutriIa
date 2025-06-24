@@ -1,67 +1,81 @@
 import { Ionicons } from '@expo/vector-icons';
-import { useRouter } from 'expo-router';
-import { Text, TextInput, TouchableOpacity, View } from 'react-native';
+import { Stack, useRouter } from 'expo-router';
+import { StyleSheet, Text, TextInput, TouchableOpacity, View } from 'react-native';
+import BackSvg from '../../../components/public/BackSvg.svg';
 import styles from './RegisterScreen.styles';
 
-
-export default function LoginScreen() {
+export default function RegisterScreen() {
   const router = useRouter();
 
   return (
-    <View style={styles.container}>
-      {/* Logo */}
-      <Text style={styles.brand}>ianutri+</Text>
+    <>
+      <Stack.Screen options={{ headerShown: false }} />
 
-      {/* Card */}
-      <View style={styles.card}>
-        <Text style={styles.title}>Login</Text>
+      <View style={styles.container}>
+        <BackSvg style={StyleSheet.absoluteFillObject} width="100%" height="100%" opacity={0.2} />
 
-        {/* Email */}
-        <View style={styles.inputContainer}>
-          <Ionicons name="mail-outline" size={18} color="#888" style={styles.icon} />
-          <TextInput
-            placeholder="exemplo@gmail.com"
-            placeholderTextColor="#888"
-            style={styles.input}
-            keyboardType="email-address"
-          />
-        </View>
+        {/* Logo */}
+        <Text style={styles.brand}>ianutri+</Text>
 
-        {/* Senha */}
-        <View style={styles.inputContainer}>
-          <Ionicons name="lock-closed-outline" size={18} color="#888" style={styles.icon} />
-          <TextInput
-            placeholder="Insira sua senha"
-            placeholderTextColor="#888"
-            style={styles.input}
-            secureTextEntry
-          />
-        </View>
+        {/* Card */}
+        <View style={styles.card}>
+          <Text style={styles.title}>Cadastro</Text>
 
-        {/* Opções */}
-        <View style={styles.options}>
-          <View style={styles.checkboxContainer}>
-            <Ionicons name="checkbox-outline" size={16} color="#888" />
-            <Text style={styles.optionText}>Lembrar senha</Text>
+          {/* Nome */}
+          <View style={styles.inputContainer}>
+            <Ionicons name="person-outline" size={18} color="#888" style={styles.icon} />
+            <TextInput
+              placeholder="Digite seu nome"
+              placeholderTextColor="#888"
+              style={styles.input}
+            />
           </View>
-          <TouchableOpacity>
-            <Text style={styles.link}>Esqueceu a senha?</Text>
+
+          {/* Email */}
+          <View style={styles.inputContainer}>
+            <Ionicons name="mail-outline" size={18} color="#888" style={styles.icon} />
+            <TextInput
+              placeholder="exemplo@gmail.com"
+              placeholderTextColor="#888"
+              style={styles.input}
+              keyboardType="email-address"
+            />
+          </View>
+
+          {/* Senha */}
+          <View style={styles.inputContainer}>
+            <Ionicons name="lock-closed-outline" size={18} color="#888" style={styles.icon} />
+            <TextInput
+              placeholder="Crie sua senha"
+              placeholderTextColor="#888"
+              style={styles.input}
+              secureTextEntry
+            />
+          </View>
+          <View style={styles.inputContainer}>
+            <Ionicons name="lock-closed-outline" size={18} color="#888" style={styles.icon} />
+            <TextInput
+              placeholder="Confirme sua senha"
+              placeholderTextColor="#888"
+              style={styles.input}
+              secureTextEntry
+            />
+          </View>
+
+          {/* Botão cadastro */}
+          <TouchableOpacity style={styles.loginButton}>
+            <Text style={styles.loginText}>Cadastrar</Text>
           </TouchableOpacity>
-        </View>
 
-        {/* Botão login */}
-        <TouchableOpacity style={styles.loginButton}>
-          <Text style={styles.loginText}>Login</Text>
-        </TouchableOpacity>
-
-        {/* Cadastro */}
-        <Text style={styles.registerText}>
-          Ainda não possui uma conta?
-          <Text style={styles.registerLink} onPress={() => router.push('/screens/RegisterScreen/RegisterScreen')}>
-            {' '}Cadastre-se
+          {/* Voltar para login */}
+          <Text style={styles.registerText}>
+            Já possui uma conta?
+            <Text style={styles.registerLink} onPress={() => router.push('/login')}>
+              {' '}Faça login
+            </Text>
           </Text>
-        </Text>
+        </View>
       </View>
-    </View>
+    </>
   );
 }

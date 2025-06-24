@@ -1,12 +1,14 @@
 import { Ionicons } from '@expo/vector-icons';
-import { useRouter } from 'expo-router';
+import { Stack, useRouter } from 'expo-router';
 import { Text, TouchableOpacity, View } from 'react-native';
+
 
 export default function HomeScreen() {
   const router = useRouter();
 
   return (
     <View style={{ flex: 1, padding: 24, backgroundColor: '#fff' }}>
+      <Stack.Screen options={{ headerShown: false }} />
       <Text style={{ fontSize: 24, fontWeight: 'bold', marginBottom: 16 }}>Bom dia!</Text>
       <Text style={{ fontSize: 16, marginBottom: 24 }}>Como podemos ajudar?</Text>
 

@@ -2,6 +2,10 @@
 import { Ionicons } from '@expo/vector-icons';
 import { Tabs } from 'expo-router';
 
+
+
+
+
 export default function TabLayout() {
   return (
     <Tabs
@@ -27,14 +31,14 @@ export default function TabLayout() {
         }}
       />
       <Tabs.Screen
-        name="progress"
+        name="progresso"
         options={{
           title: 'Progresso',
-          tabBarIcon: ({ color, size }) => <Ionicons name="stats-chart" color={color} size={size} />,
+          tabBarIcon: ({ color, size }) => <Ionicons name="analytics-outline" color={color} size={size} />,
         }}
       />
       <Tabs.Screen
-        name="history"
+        name="historico"
         options={{
           title: 'Histórico',
           tabBarIcon: ({ color, size }) => <Ionicons name="time" color={color} size={size} />,
