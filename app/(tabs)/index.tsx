@@ -1,7 +1,7 @@
+import Header from '@/components/Header';
 import { Ionicons } from '@expo/vector-icons';
 import { Stack, useRouter } from 'expo-router';
 import { Text, TouchableOpacity, View } from 'react-native';
-
 
 export default function HomeScreen() {
   const router = useRouter();
@@ -9,7 +9,8 @@ export default function HomeScreen() {
   return (
     <View style={{ flex: 1, padding: 24, backgroundColor: '#fff' }}>
       <Stack.Screen options={{ headerShown: false }} />
-      <Text style={{ fontSize: 24, fontWeight: 'bold', marginBottom: 16 }}>Bom dia!</Text>
+      <Header />
+      <Text style={{ fontSize: 24, fontWeight: 'bold', marginBottom: 16, marginTop: 16 }}>Bom dia!</Text>
       <Text style={{ fontSize: 16, marginBottom: 24 }}>Como podemos ajudar?</Text>
 
       <TouchableOpacity

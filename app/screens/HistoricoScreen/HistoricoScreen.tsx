@@ -1,12 +1,13 @@
+import Header from '@/components/Header';
 import { Stack } from 'expo-router';
 import { Image, ScrollView, Text, View } from 'react-native';
 import styles from './HistoricoScreen.styles';
-
 
 export default function HistoricoScreen() {
   return (
     <ScrollView style={styles.container}>
        <Stack.Screen options={{ headerShown: false }} />
+       <Header/>
       <Text style={styles.title}>Seu histórico</Text>
 
       {/* Dias da semana */}

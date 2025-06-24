@@ -1,3 +1,4 @@
+import Header from '@/components/Header';
 import { Stack } from 'expo-router';
 import { useState } from 'react';
 import { Text, TouchableOpacity, View } from 'react-native';
@@ -9,6 +10,7 @@ export default function ProgressoScreen() {
   return (
     <View style={styles.container}>
        <Stack.Screen options={{ headerShown: false }} />
+       <Header/>
       {/* Cabeçalho */}
       <View style={styles.header}>
         <Text style={styles.headerText}>Seu progresso</Text>

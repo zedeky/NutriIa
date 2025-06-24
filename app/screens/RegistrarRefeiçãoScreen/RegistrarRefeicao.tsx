@@ -1,3 +1,4 @@
+import Header from '@/components/Header';
 import { Ionicons } from '@expo/vector-icons';
 import { Stack, useRouter } from 'expo-router';
 import { Text, TouchableOpacity, View } from 'react-native';
@@ -9,6 +10,7 @@ export default function RegistrarRefeicaoScreen() {
   return (
     <View style={styles.container}>
       <Stack.Screen options={{ headerShown: false }} />
+      <Header/>
       <Text style={styles.greeting}>Bom dia!</Text>
       <Text style={styles.question}>Como deseja registrar a refeição?</Text>
 
