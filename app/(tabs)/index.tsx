@@ -31,7 +31,7 @@ export default function HomeScreen() {
           <Text>Registrar refeição</Text>
         </TouchableOpacity>
 
-        <View
+        <TouchableOpacity
           style={{
             marginBottom: 24,
             backgroundColor: '#C7E0F4',
@@ -41,10 +41,12 @@ export default function HomeScreen() {
             alignItems: 'center',
             gap: 6,
           }}
+          onPress={() => router.push('/metas')}
         >
           <Ionicons name="list-outline" size={18} color="#555" />
           <Text>Metas estabelecidas</Text>
-        </View>
+        </TouchableOpacity>
+
 
         <Text style={{ fontSize: 18, marginBottom: 16 }}>Estatísticas</Text>
 
