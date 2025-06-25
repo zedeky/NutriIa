@@ -1,3 +1,3 @@
-import RegistrarRefeicaoScreen from '../screens/RegistrarRefeiçãoScreen/RegistrarRefeicao';
+import RegistrarRefeicaoScreen from '../screens/RegistrarRefeicaoScreen/RegistrarRefeicao';
 
 export default RegistrarRefeicaoScreen;

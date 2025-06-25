@@ -1,26 +1,32 @@
 import { StyleSheet } from 'react-native';
 
 export default StyleSheet.create({
-  container: {
+  wrapper: {
     flex: 1,
     backgroundColor: '#BF5F70',
+    position: 'relative',
+  },
+  backgroundWrapper: {
+    ...StyleSheet.absoluteFillObject,
+    zIndex: -1,
+  },
+  container: {
+    flex: 1,
+  },
+  content: {
+    flex: 1,
     alignItems: 'center',
     justifyContent: 'center',
-    padding: 20,
+    paddingHorizontal: 24,
   },
   title: {
     color: '#fff',
     fontSize: 28,
     fontWeight: 'bold',
-    marginBottom: 20,
-  },
-  logo: {
-    width: 100,
-    height: 100,
-    marginVertical: 20,
+    marginBottom: 12,
   },
   brand: {
-    fontSize: 20,
+    fontSize: 22,
     color: '#fff',
     fontWeight: '600',
     marginBottom: 40,
@@ -29,13 +35,14 @@ export default StyleSheet.create({
     flexDirection: 'row',
     alignItems: 'center',
     gap: 8,
-    backgroundColor: '#555',
+    backgroundColor: 'rgb(44, 121, 44)', 
     paddingHorizontal: 20,
-    paddingVertical: 10,
+    paddingVertical: 12,
     borderRadius: 20,
   },
   continueText: {
     color: '#fff',
     fontSize: 16,
+    fontWeight: 'bold',
   },
 });

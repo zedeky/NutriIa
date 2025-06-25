@@ -3,15 +3,24 @@ import { StyleSheet } from 'react-native';
 export default StyleSheet.create({
   container: {
     flex: 1,
+    position: 'relative',
     backgroundColor: '#BF5F70',
-    alignItems: 'center',
-    justifyContent: 'center',
-    padding: 20,
   },
-  logo: {
-    width: 80,
-    height: 80,
-    marginBottom: 8,
+  backgroundWrapper: {
+    ...StyleSheet.absoluteFillObject,
+    zIndex: -1,
+  },
+  backgroundSvg: {
+    flex: 1,
+    width: '100%',
+    height: '100%',
+    opacity: 0.2,
+  },
+  content: {
+    flex: 1, // <-- ESSENCIAL PARA ALTURA TOTAL
+    justifyContent: 'center',
+    alignItems: 'center',
+    padding: 20,
   },
   brand: {
     fontSize: 22,
@@ -68,7 +77,7 @@ export default StyleSheet.create({
     fontSize: 14,
   },
   loginButton: {
-    backgroundColor: '#4CAF50',
+    backgroundColor: '#2F9E44',
     paddingVertical: 12,
     borderRadius: 8,
     alignItems: 'center',
@@ -78,26 +87,14 @@ export default StyleSheet.create({
     fontSize: 16,
     fontWeight: '600',
   },
-  footer: {
+  registerText: {
+    fontSize: 14,
+    color: '#000',
     textAlign: 'center',
     marginTop: 16,
-    color: '#666',
   },
-  signup: {
-    color: '#0066cc',
-    fontWeight: '600',
+  registerLink: {
+    color: '#4F46E5',
+    fontWeight: 'bold',
   },
-
-  registerText: {
-  fontSize: 14,
-  color: '#000',
-  textAlign: 'center',
-},
-
-registerLink: {
-  color: '#4F46E5',
-  fontWeight: 'bold',
-},
-
 });
-

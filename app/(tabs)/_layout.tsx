@@ -48,6 +48,9 @@ export default function TabLayout() {
       <Tabs.Screen name="registrarR" options={{ href: null }} />
       <Tabs.Screen name="notificacoes" options={{ href: null }} />
       <Tabs.Screen name="perfil" options={{ href: null }} />
+      <Tabs.Screen name="registrarManual" options={{ href: null }} />
+      <Tabs.Screen name="CameraScreen" options={{ href: null }} />
+      <Tabs.Screen name="ResultadoAutomaticoScreen" options={{ href: null }} />
     </Tabs>
   );
 }

@@ -16,7 +16,8 @@ export default function RegistrarRefeicaoScreen() {
         <Text style={styles.greeting}>Bom dia!</Text>
         <Text style={styles.question}>Como deseja registrar a refeição?</Text>
 
-        <TouchableOpacity style={styles.optionCard} onPress={() => {/* lógica da câmera */}}>
+        <TouchableOpacity style={styles.optionCard} onPress={() => router.push('/CameraScreen')}>
+
           <Ionicons name="camera-outline" size={20} color="#333" />
           <View>
             <Text style={styles.optionTitle}>Automaticamente</Text>
