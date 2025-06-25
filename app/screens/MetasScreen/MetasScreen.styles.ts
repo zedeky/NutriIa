@@ -53,4 +53,18 @@ export default StyleSheet.create({
     fontSize: 16,
     color: '#000',
   },
+  loginButton: {
+  backgroundColor: '#4CAF50',
+  paddingVertical: 12,
+  borderRadius: 8,
+  alignItems: 'center',
+  marginTop: 20,
+},
+
+loginText: {
+  color: '#fff',
+  fontSize: 16,
+  fontWeight: 'bold',
+},
+
 });
