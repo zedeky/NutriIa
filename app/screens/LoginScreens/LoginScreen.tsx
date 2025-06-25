@@ -1,15 +1,73 @@
 import BackSvg from '@/components/public/BackSvg.svg';
+import { useAuth } from '@/context/AuthContext';
 import { Ionicons } from '@expo/vector-icons';
 import { Stack, useRouter } from 'expo-router';
-import React from 'react';
-import { Platform, StatusBar, Text, TextInput, TouchableOpacity, View } from 'react-native';
+import { collection, getDocs, query, where } from 'firebase/firestore';
+import React, { useState } from 'react';
+import {
+  Alert,
+  KeyboardAvoidingView,
+  Platform,
+  StatusBar,
+  Text,
+  TextInput,
+  TouchableOpacity,
+  View,
+} from 'react-native';
+import { db } from '../../config/firebase';
 import styles from './LoginScreen.styles';
 
 export default function LoginScreen() {
   const router = useRouter();
+  const { login } = useAuth();
+
+  const [email, setEmail] = useState('');
+  const [senha, setSenha] = useState('');
+
+  const handleLogin = async () => {
+    if (!email || !senha) {
+      Alert.alert('Erro', 'Preencha todos os campos.');
+      return;
+    }
+
+    try {
+      const q = query(collection(db, 'usuarios'), where('email', '==', email));
+      const snapshot = await getDocs(q);
+
+      if (snapshot.empty) {
+        console.log('Nenhum usuário encontrado com esse email.');
+        Alert.alert('Erro', 'Usuário não encontrado.');
+        return;
+      }
+
+      const userDoc = snapshot.docs[0];
+      const userData = userDoc.data();
+
+      console.log('Dados do usuário encontrados no Firestore:', userData);
+
+      if (userData.senha !== senha) {
+        console.log('Senha incorreta.');
+        Alert.alert('Erro', 'Senha incorreta.');
+        return;
+      }
+
+     
+      await login({ id: userDoc.id, ...(userData as any) });
+      console.log('Usuário salvo no contexto com sucesso!');
+
+     
+      router.replace('/(tabs)');
+    } catch (error) {
+      console.error('Erro ao fazer login:', error);
+      Alert.alert('Erro', 'Não foi possível fazer login.');
+    }
+  };
 
   return (
-    <View style={[styles.container, { paddingTop: Platform.OS === 'android' ? StatusBar.currentHeight : 0 }]}>
+    <KeyboardAvoidingView
+      style={[styles.container, { paddingTop: Platform.OS === 'android' ? StatusBar.currentHeight : 0 }]}
+      behavior={Platform.OS === 'ios' ? 'padding' : undefined}
+    >
       <Stack.Screen options={{ headerShown: false }} />
 
       <View style={styles.backgroundWrapper}>
@@ -29,6 +87,9 @@ export default function LoginScreen() {
               placeholderTextColor="#888"
               style={styles.input}
               keyboardType="email-address"
+              value={email}
+              onChangeText={setEmail}
+              autoCapitalize="none"
             />
           </View>
 
@@ -39,6 +100,8 @@ export default function LoginScreen() {
               placeholderTextColor="#888"
               style={styles.input}
               secureTextEntry
+              value={senha}
+              onChangeText={setSenha}
             />
           </View>
 
@@ -52,10 +115,7 @@ export default function LoginScreen() {
             </TouchableOpacity>
           </View>
 
-          <TouchableOpacity
-            style={styles.loginButton}
-            onPress={() => router.replace('/(tabs)')}
-          >
+          <TouchableOpacity style={styles.loginButton} onPress={handleLogin}>
             <Text style={styles.loginText}>Login</Text>
           </TouchableOpacity>
 
@@ -70,6 +130,6 @@ export default function LoginScreen() {
           </Text>
         </View>
       </View>
-    </View>
+    </KeyboardAvoidingView>
   );
 }

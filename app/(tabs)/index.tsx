@@ -1,10 +1,23 @@
 import Header from '@/components/Header';
-import { Ionicons } from '@expo/vector-icons';
+import { useAuth } from '@/context/AuthContext';
 import { Stack, useRouter } from 'expo-router';
-import { SafeAreaView, ScrollView, Text, TouchableOpacity, View } from 'react-native';
+import { useEffect } from 'react';
+import { SafeAreaView, ScrollView, Text } from 'react-native';
 
 export default function HomeScreen() {
   const router = useRouter();
+  const { user, loading } = useAuth();
+
+  useEffect(() => {
+    // Redireciona para login se não estiver carregando e o usuário não existir
+    if (!loading && !user) {
+      router.replace('/screens/LoginScreens/LoginScreen');
+    }
+  }, [loading, user]);
+
+  if (loading || !user) {
+    return <Text style={{ marginTop: 50, textAlign: 'center' }}>Redirecionando...</Text>;
+  }
 
   return (
     <SafeAreaView style={{ flex: 1, backgroundColor: '#fff' }}>
@@ -12,65 +25,12 @@ export default function HomeScreen() {
       <Header />
 
       <ScrollView contentContainerStyle={{ paddingHorizontal: 16, paddingTop: 16 }}>
-        <Text style={{ fontSize: 24, fontWeight: 'bold', marginBottom: 16 }}>Bom dia!</Text>
+        <Text style={{ fontSize: 24, fontWeight: 'bold', marginBottom: 16 }}>
+          Bom dia, {user.name}!
+        </Text>
         <Text style={{ fontSize: 16, marginBottom: 24 }}>Como podemos ajudar?</Text>
 
-        <TouchableOpacity
-          style={{
-            marginBottom: 8,
-            backgroundColor: '#C7E0F4',
-            padding: 12,
-            borderRadius: 8,
-            flexDirection: 'row',
-            alignItems: 'center',
-            gap: 6,
-          }}
-          onPress={() => router.push('/registrarR')}
-        >
-          <Ionicons name="add-circle-outline" size={18} color="#555" />
-          <Text>Registrar refeição</Text>
-        </TouchableOpacity>
-
-        <TouchableOpacity
-          style={{
-            marginBottom: 24,
-            backgroundColor: '#C7E0F4',
-            padding: 12,
-            borderRadius: 8,
-            flexDirection: 'row',
-            alignItems: 'center',
-            gap: 6,
-          }}
-          onPress={() => router.push('/metas')}
-        >
-          <Ionicons name="list-outline" size={18} color="#555" />
-          <Text>Metas estabelecidas</Text>
-        </TouchableOpacity>
-
-
-        <Text style={{ fontSize: 18, marginBottom: 16 }}>Estatísticas</Text>
-
-        <View style={{ backgroundColor: '#D57A8D', borderRadius: 16, padding: 16 }}>
-          <View style={{ flexDirection: 'row', justifyContent: 'space-around', marginBottom: 16 }}>
-            <Text style={{ color: '#fff' }}>3 refeições</Text>
-            <Text style={{ color: '#fff' }}>1500 calorias</Text>
-            <Text style={{ color: '#fff' }}>2.5L água</Text>
-          </View>
-
-          <View
-            style={{
-              flexDirection: 'row',
-              justifyContent: 'space-around',
-              backgroundColor: '#fff',
-              padding: 12,
-              borderRadius: 12,
-            }}
-          >
-            <Text style={{ color: '#E59400' }}>13g gordura</Text>
-            <Text style={{ color: '#248F24' }}>86g proteína</Text>
-            <Text style={{ color: '#1E90FF' }}>43g carbo</Text>
-          </View>
-        </View>
+        {/* Botões, estatísticas, etc. */}
       </ScrollView>
     </SafeAreaView>
   );
