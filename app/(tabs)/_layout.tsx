@@ -15,8 +15,6 @@ export default function TabLayout() {
         tabBarLabelStyle: { fontSize: 12 },
         tabBarStyle: {
           backgroundColor: '#f8f4ff',
-          borderTopLeftRadius: 20,
-          borderTopRightRadius: 20,
           height: 65,
           paddingBottom: 10,
           paddingTop: 5,
@@ -48,6 +46,8 @@ export default function TabLayout() {
       {/* Esconder essas da tab bar */}
       <Tabs.Screen name="explore" options={{ href: null }} />
       <Tabs.Screen name="registrarR" options={{ href: null }} />
+      <Tabs.Screen name="notificacoes" options={{ href: null }} />
+      <Tabs.Screen name="perfil" options={{ href: null }} />
     </Tabs>
   );
 }

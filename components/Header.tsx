@@ -1,24 +1,23 @@
 import { useRouter } from 'expo-router';
-import { Bell, Home, User } from 'lucide-react-native'; // ícones exemplo
+import { Bell, User } from 'lucide-react-native';
 import React from 'react';
 import { StyleSheet, Text, TouchableOpacity, View } from 'react-native';
+import { useSafeAreaInsets } from 'react-native-safe-area-context';
 
 const Header = () => {
   const router = useRouter();
+  const insets = useSafeAreaInsets(); // pega os espaçamentos seguros do sistema
 
   return (
-    <View style={styles.container}>
-      <TouchableOpacity onPress={() => router.push('/home')}>
-        <Home size={24} color="#000" />
-      </TouchableOpacity>
+    <View style={[styles.container, { paddingTop: insets.top }]}>
 
       <Text style={styles.title}>Seu App</Text>
 
       <View style={styles.icons}>
-        <TouchableOpacity onPress={() => router.push('../app/screens/notificacoes/NotificacaoScreen.tsx')}>
+        <TouchableOpacity onPress={() => router.push('/notificacoes')}>
           <Bell size={24} color="#000" style={styles.icon} />
         </TouchableOpacity>
-        <TouchableOpacity onPress={() => router.push('../app/screens/PerfilScreen/PerfilScreen.tsx')}>
+        <TouchableOpacity onPress={() => router.push('/perfil')}>
           <User size={24} color="#000" />
         </TouchableOpacity>
       </View>
@@ -30,12 +29,12 @@ export default Header;
 
 const styles = StyleSheet.create({
   container: {
-    height: 60,
-    backgroundColor: '#D57A8D', 
+    backgroundColor: '#D57A8D',
     flexDirection: 'row',
     alignItems: 'center',
     justifyContent: 'space-between',
     paddingHorizontal: 16,
+    paddingBottom: 8,
     borderBottomWidth: 1,
     borderColor: '#ccc',
   },

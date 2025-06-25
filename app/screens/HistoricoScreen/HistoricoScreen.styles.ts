@@ -1,10 +1,13 @@
 import { StyleSheet } from 'react-native';
 
 const styles = StyleSheet.create({
-  container: {
+  safeArea: {
     flex: 1,
-    padding: 16,
     backgroundColor: '#fff',
+  },
+  scrollContent: {
+    paddingHorizontal: 16,
+    paddingTop: 16,
   },
   title: {
     fontSize: 24,

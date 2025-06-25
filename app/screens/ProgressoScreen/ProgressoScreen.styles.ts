@@ -1,10 +1,13 @@
 import { StyleSheet } from 'react-native';
 
 const styles = StyleSheet.create({
-  container: {
+  safeArea: {
     flex: 1,
     backgroundColor: '#FFF',
-    padding: 16,
+  },
+  scrollContent: {
+    paddingHorizontal: 16,
+    paddingTop: 16,
   },
   header: {
     marginBottom: 24,
@@ -57,9 +60,9 @@ const styles = StyleSheet.create({
   },
   shareText: {
     fontSize: 14,
-    textAlign: 'center',
     color: '#555',
-  }
+    textAlign: 'left', // igual ao padrão do index
+  },
 });
 
 export default styles;

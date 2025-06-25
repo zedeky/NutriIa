@@ -1,52 +1,50 @@
 import Header from '@/components/Header';
 import { Stack } from 'expo-router';
 import { useState } from 'react';
-import { Text, TouchableOpacity, View } from 'react-native';
+import { SafeAreaView, ScrollView, Text, TouchableOpacity, View } from 'react-native';
 import styles from './ProgressoScreen.styles';
 
 export default function ProgressoScreen() {
   const [segment, setSegment] = useState<'diario' | 'semanal'>('diario');
 
   return (
-    <View style={styles.container}>
-       <Stack.Screen options={{ headerShown: false }} />
-       <Header/>
-      {/* Cabeçalho */}
-      <View style={styles.header}>
-        <Text style={styles.headerText}>Seu progresso</Text>
-      </View>
+    <SafeAreaView style={styles.safeArea}>
+      <Stack.Screen options={{ headerShown: false }} />
+      <Header />
+      
+      <ScrollView contentContainerStyle={styles.scrollContent}>
+        <View style={styles.header}>
+          <Text style={styles.headerText}>Seu progresso</Text>
+        </View>
 
-      {/* Segmento */}
-      <View style={styles.segmentContainer}>
-        <TouchableOpacity
-          style={[styles.segmentButton, segment === 'diario' && styles.activeSegment]}
-          onPress={() => setSegment('diario')}
-        >
-          <Text style={styles.segmentText}>Diária</Text>
-        </TouchableOpacity>
+        <View style={styles.segmentContainer}>
+          <TouchableOpacity
+            style={[styles.segmentButton, segment === 'diario' && styles.activeSegment]}
+            onPress={() => setSegment('diario')}
+          >
+            <Text style={styles.segmentText}>Diária</Text>
+          </TouchableOpacity>
 
-        <TouchableOpacity
-          style={[styles.segmentButton, segment === 'semanal' && styles.activeSegment]}
-          onPress={() => setSegment('semanal')}
-        >
-          <Text style={styles.segmentText}>Semanal</Text>
-        </TouchableOpacity>
-      </View>
+          <TouchableOpacity
+            style={[styles.segmentButton, segment === 'semanal' && styles.activeSegment]}
+            onPress={() => setSegment('semanal')}
+          >
+            <Text style={styles.segmentText}>Semanal</Text>
+          </TouchableOpacity>
+        </View>
 
-      {/* Cartão de dados */}
-      <View style={styles.dataCard}>
-        <Text style={styles.dataLabel}>Gordura:</Text>
-        <Text style={styles.dataLabel}>Proteína:</Text>
-        <Text style={styles.dataLabel}>Carboidrato:</Text>
-      </View>
+        <View style={styles.dataCard}>
+          <Text style={styles.dataLabel}>Gordura:</Text>
+          <Text style={styles.dataLabel}>Proteína:</Text>
+          <Text style={styles.dataLabel}>Carboidrato:</Text>
+        </View>
 
-      {/* Cartão de recompensas */}
-      <View style={styles.rewardCard}>
-        <Text style={styles.rewardTitle}>Recompensas</Text>
-        {/* Conteúdo de recompensas aqui */}
-      </View>
+        <View style={styles.rewardCard}>
+          <Text style={styles.rewardTitle}>Recompensas</Text>
+        </View>
 
-      <Text style={styles.shareText}>📤 Compartilhar progresso</Text>
-    </View>
+        <Text style={styles.shareText}>📤 Compartilhar progresso</Text>
+      </ScrollView>
+    </SafeAreaView>
   );
 }
