@@ -13,6 +13,8 @@ import {
 } from 'react-native';
 import { salvarRefeicao } from '../../../utils/salvarRefeicao';
 import styles from './registrarManual.styles';
+import { Picker } from '@react-native-picker/picker'
+
 
 export default function RegistrarManual() {
   const [alimentos, setAlimentos] = useState([{ nome: '', gramas: '' }]);
@@ -113,13 +115,18 @@ export default function RegistrarManual() {
 
         <View style={styles.inputCard}>
           <Text style={{ fontWeight: 'bold', marginBottom: 8 }}>Qual refeição é essa?</Text>
-          <TextInput
+          <Picker
             placeholder="Ex: Café da manhã, Almoço, Jantar"
-            value={tipo}
-            onChangeText={setTipo}
+            selectedValue={tipo}
+            onValueChange={(itemValue) => setTipo(itemValue)}
             style={styles.inputNome}
-            placeholderTextColor="#999"
-          />
+            // placeholderTextColor="#999"
+          >
+            <Picker.Item label="Café da manhã" value="cafe_da_manha" />
+            <Picker.Item label="Almoço" value="almoco" />
+            <Picker.Item label="Lanche" value="lanche" />
+            <Picker.Item label="Jantar" value="jantar" />
+          </Picker>
         </View>
 
         {alimentos.map((alimento, index) => (

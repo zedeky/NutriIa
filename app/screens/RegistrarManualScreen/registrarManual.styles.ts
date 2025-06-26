@@ -32,6 +32,7 @@ const styles = StyleSheet.create({
     fontSize: 16,
     marginBottom: 8,
     color: '#000',
+    width: 400
   },
   gramasWrapper: {
     flexDirection: 'row',
