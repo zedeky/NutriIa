@@ -96,6 +96,37 @@ const styles = StyleSheet.create({
     color: '#000',
     fontWeight: 'bold',
   },
+
+  // NOVOS ESTILOS PARA A CAIXA DE CONFIRMAÇÃO
+  confirmBox: {
+    position: 'absolute',
+    top: 70,
+    left: 16,
+    right: 16,
+    zIndex: 10,
+    backgroundColor: '#E1F8D2',
+    borderRadius: 12,
+    padding: 16,
+    flexDirection: 'row',
+    justifyContent: 'space-between',
+    alignItems: 'center',
+    elevation: 4,
+    shadowColor: '#000',
+    shadowOpacity: 0.2,
+    shadowRadius: 6,
+    shadowOffset: { width: 0, height: 3 },
+  },
+  confirmText: {
+    color: '#2E7D32',
+    fontWeight: 'bold',
+    fontSize: 14,
+    flex: 1,
+  },
+  closeButton: {
+    fontSize: 18,
+    color: '#2E7D32',
+    marginLeft: 12,
+  },
 });
 
 export default styles;

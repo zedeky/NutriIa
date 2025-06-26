@@ -1,7 +1,9 @@
 import Header from '@/components/Header';
-import { Stack } from 'expo-router';
+import { useAuth } from '@/context/AuthContext';
+import { Stack, useRouter } from 'expo-router';
 import { useState } from 'react';
 import {
+  Alert,
   SafeAreaView,
   ScrollView,
   Text,
@@ -9,10 +11,18 @@ import {
   TouchableOpacity,
   View,
 } from 'react-native';
+import { salvarRefeicao } from '../../../utils/salvarRefeicao';
 import styles from './registrarManual.styles';
 
 export default function RegistrarManual() {
-  const [alimentos, setAlimentos] = useState([{ nome: 'Feijão', gramas: '100' }]);
+  const [alimentos, setAlimentos] = useState([{ nome: '', gramas: '' }]);
+  const [tipo, setTipo] = useState('');
+  const [nome, setNome] = useState('Refeição personalizada');
+  const [descricao, setDescricao] = useState('Montada manualmente');
+  const [confirmado, setConfirmado] = useState(false);
+  const router = useRouter();
+  const { user } = useAuth();
+
 
   const adicionarAlimento = () => {
     setAlimentos([...alimentos, { nome: '', gramas: '' }]);
@@ -30,14 +40,86 @@ export default function RegistrarManual() {
     setAlimentos(novaLista);
   };
 
+  const confirmarRefeicao = async () => {
+  const alimentosValidos = alimentos.filter(a => a.nome.trim() !== '');
+
+  if (alimentosValidos.length === 0 || tipo.trim() === '') {
+    Alert.alert('Erro', 'Preencha o tipo da refeição e adicione pelo menos um alimento válido.');
+    return;
+  }
+
+  if (!user?.id) {
+    Alert.alert('Erro', 'Usuário não identificado.');
+    return;
+  }
+
+  try {
+    const gramasTotais = alimentosValidos.reduce((soma, a) => soma + Number(a.gramas), 0);
+
+    // Suponha valores médios por grama para simplificar:
+    const gorduraPorGrama = 0.1;
+    const proteinaPorGrama = 0.2;
+    const carboidratoPorGrama = 0.3;
+
+    const gorduras = gramasTotais * gorduraPorGrama;
+    const proteinas = gramasTotais * proteinaPorGrama;
+    const carboidratos = gramasTotais * carboidratoPorGrama;
+    const calorias = gorduras * 9 + proteinas * 4 + carboidratos * 4;
+    const agua = gramasTotais * 0.01; // Ex: 1% de água por grama
+
+
+    await salvarRefeicao(user.id, {
+      tipo,
+      nome,
+      descricao,
+      calorias,
+      gorduras,
+      proteinas,
+      carboidratos,
+      agua,
+      alimentos: alimentosValidos,
+    });
+
+    setConfirmado(true);
+    setAlimentos([{ nome: '', gramas: '' }]);
+    setTipo('');
+    setNome('Refeição personalizada');
+    setDescricao('Montada manualmente');
+  } catch (error) {
+    Alert.alert('Erro', 'Não foi possível salvar a refeição.');
+  }};
+
+
+  const alimentosValidos = alimentos.filter(a => a.nome.trim() !== '');
+
   return (
     <SafeAreaView style={styles.safeArea}>
       <Stack.Screen options={{ headerShown: false }} />
       <Header />
 
+      {confirmado && (
+        <View style={styles.confirmBox}>
+          <Text style={styles.confirmText}>✅ Refeição registrada com sucesso!</Text>
+          <TouchableOpacity onPress={() => setConfirmado(false)}>
+            <Text style={styles.closeButton}>✖</Text>
+          </TouchableOpacity>
+        </View>
+      )}
+
       <ScrollView contentContainerStyle={styles.scrollContent}>
         <View style={styles.headerRosa}>
           <Text style={styles.titulo}>Informe os alimentos e suas quantidades presentes na refeição</Text>
+        </View>
+
+        <View style={styles.inputCard}>
+          <Text style={{ fontWeight: 'bold', marginBottom: 8 }}>Qual refeição é essa?</Text>
+          <TextInput
+            placeholder="Ex: Café da manhã, Almoço, Jantar"
+            value={tipo}
+            onChangeText={setTipo}
+            style={styles.inputNome}
+            placeholderTextColor="#999"
+          />
         </View>
 
         {alimentos.map((alimento, index) => (
@@ -70,16 +152,18 @@ export default function RegistrarManual() {
           <Text style={styles.adicionar}>➕ Adicionar alimento</Text>
         </TouchableOpacity>
 
-        <View style={styles.estimativasBox}>
-          <Text style={styles.estimativa}>Gordura total estimada:</Text>
-          <Text style={styles.estimativa}>Proteína total estimada:</Text>
-          <Text style={styles.estimativa}>Carboidrato total estimado:</Text>
-        </View>
+        {alimentosValidos.length > 0 && (
+          <View style={styles.estimativasBox}>
+            <Text style={styles.estimativa}>Gordura total estimada: {alimentosValidos.length * 5}g</Text>
+            <Text style={styles.estimativa}>Proteína total estimada: {alimentosValidos.length * 8}g</Text>
+            <Text style={styles.estimativa}>Carboidrato total estimado: {alimentosValidos.length * 10}g</Text>
+          </View>
+        )}
 
-        <TouchableOpacity style={styles.confirmar}>
+        <TouchableOpacity style={styles.confirmar} onPress={confirmarRefeicao}>
           <Text style={styles.confirmarTexto}>Confirmar refeição</Text>
         </TouchableOpacity>
-        <TouchableOpacity style={styles.cancelar}>
+        <TouchableOpacity style={styles.cancelar} onPress={() => router.back()}>
           <Text style={styles.cancelarTexto}>Cancelar</Text>
         </TouchableOpacity>
       </ScrollView>

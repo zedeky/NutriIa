@@ -58,6 +58,13 @@ const styles = StyleSheet.create({
     fontSize: 14,
     marginBottom: 2,
   },
+  diaLabel: {
+  fontSize: 18,
+  fontWeight: 'bold',
+  marginTop: 16,
+  marginBottom: 8,
+},
+
 });
 
 export default styles;

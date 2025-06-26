@@ -2,7 +2,7 @@ import AsyncStorage from '@react-native-async-storage/async-storage';
 import React, { createContext, useContext, useEffect, useState } from 'react';
 
 type UserType = {
-  id: string; 
+  id: string; // ID do documento no Firestore (usado para salvar em subcoleção)
   name: string;
   email: string;
   senha: string;
@@ -16,7 +16,6 @@ type UserType = {
   };
 };
 
-
 type AuthContextType = {
   user: UserType | null;
   login: (userData: UserType) => Promise<void>;
@@ -28,7 +27,7 @@ const AuthContext = createContext<AuthContextType>({
   user: null,
   login: async () => {},
   logout: async () => {},
-  loading: true, // valor padrão de segurança
+  loading: true,
 });
 
 export const AuthProvider = ({ children }: { children: React.ReactNode }) => {
