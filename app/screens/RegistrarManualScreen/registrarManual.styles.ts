@@ -128,6 +128,43 @@ const styles = StyleSheet.create({
     color: '#2E7D32',
     marginLeft: 12,
   },
+
+  // NOVOS ESTILOS PARA RNPickerSelect
+  pickerSelectIOS: {
+    fontSize: 16,
+    paddingVertical: 12,
+    paddingHorizontal: 10,
+    borderWidth: 1,
+    borderColor: '#ccc',
+    borderRadius: 8,
+    color: '#333',
+    paddingRight: 30,
+    backgroundColor: '#fff',
+    marginBottom: 12,
+  },
+
+  pickerSelectAndroid: {
+    fontSize: 16,
+    paddingHorizontal: 10,
+    paddingVertical: 1,
+    borderWidth: 1,
+    borderColor: '#ccc',
+    borderRadius: 8,
+    color: '#333',
+    paddingRight: 30,
+    backgroundColor: '#fff',
+    marginBottom: 12,
+  },
+
+  pickerPlaceholder: {
+    color: '#999',
+    fontSize: 16,
+  },
+
+  pickerIconContainer: {
+    top: 15,
+    right: 12,
+  }
 });
 
 export default styles;

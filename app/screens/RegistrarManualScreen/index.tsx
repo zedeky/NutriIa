@@ -11,9 +11,9 @@ import {
   TouchableOpacity,
   View,
 } from 'react-native';
+import RNPickerSelect from 'react-native-picker-select';
 import { salvarRefeicao } from '../../../utils/salvarRefeicao';
 import styles from './registrarManual.styles';
-import { Picker } from '@react-native-picker/picker'
 
 
 export default function RegistrarManual() {
@@ -115,18 +115,28 @@ export default function RegistrarManual() {
 
         <View style={styles.inputCard}>
           <Text style={{ fontWeight: 'bold', marginBottom: 8 }}>Qual refeição é essa?</Text>
-          <Picker
-            placeholder="Ex: Café da manhã, Almoço, Jantar"
-            selectedValue={tipo}
-            onValueChange={(itemValue) => setTipo(itemValue)}
-            style={styles.inputNome}
-            // placeholderTextColor="#999"
-          >
-            <Picker.Item label="Café da manhã" value="cafe_da_manha" />
-            <Picker.Item label="Almoço" value="almoco" />
-            <Picker.Item label="Lanche" value="lanche" />
-            <Picker.Item label="Jantar" value="jantar" />
-          </Picker>
+          <RNPickerSelect
+            onValueChange={(value) => setTipo(value)}
+            value={tipo}
+            placeholder={{
+              label: 'Selecione o tipo de refeição',
+              value: '',
+              color: '#999'
+            }}
+            items={[
+              { label: 'Café da manhã', value: 'cafe_da_manha' },
+              { label: 'Almoço', value: 'almoco' },
+              { label: 'Lanche', value: 'lanche' },
+              { label: 'Jantar', value: 'jantar' },
+            ]}
+            style={{
+              inputIOS: styles.pickerSelectIOS,
+              inputAndroid: styles.pickerSelectAndroid,
+              placeholder: styles.pickerPlaceholder,
+              iconContainer: styles.pickerIconContainer,
+            }}
+          />
+
         </View>
 
         {alimentos.map((alimento, index) => (
